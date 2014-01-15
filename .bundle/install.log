@@ -1,0 +1,11 @@
+# Logfile created on 2014-01-15 20:26:35 +0300 by logger.rb/44203
+I, [2014-01-15T20:26:35.643579 #10160]  INFO -- : 0:  diff-lcs (1.2.5) from /Users/psk/.rvm/gems/ruby-2.1.0/specifications/diff-lcs-1.2.5.gemspec
+I, [2014-01-15T20:26:35.644808 #10160]  INFO -- : 0:  rack (1.5.2) from /Users/psk/.rvm/gems/ruby-2.1.0/specifications/rack-1.5.2.gemspec
+I, [2014-01-15T20:26:38.219348 #10160]  INFO -- : 0:  rack-protection (1.5.2) from /Users/psk/.rvm/gems/ruby-2.1.0/specifications/rack-protection-1.5.2.gemspec
+I, [2014-01-15T20:26:38.219902 #10160]  INFO -- : 0:  rspec-core (2.14.7) from /Users/psk/.rvm/gems/ruby-2.1.0/specifications/rspec-core-2.14.7.gemspec
+I, [2014-01-15T20:26:38.220282 #10160]  INFO -- : 0:  rspec-expectations (2.14.4) from /Users/psk/.rvm/gems/ruby-2.1.0/specifications/rspec-expectations-2.14.4.gemspec
+I, [2014-01-15T20:26:38.220648 #10160]  INFO -- : 0:  rspec-mocks (2.14.4) from /Users/psk/.rvm/gems/ruby-2.1.0/specifications/rspec-mocks-2.14.4.gemspec
+I, [2014-01-15T20:26:40.387971 #10160]  INFO -- : 0:  rspec (2.14.1) from /Users/psk/.rvm/gems/ruby-2.1.0/specifications/rspec-2.14.1.gemspec
+I, [2014-01-15T20:26:40.388432 #10160]  INFO -- : 0:  tilt (1.4.1) from /Users/psk/.rvm/gems/ruby-2.1.0/specifications/tilt-1.4.1.gemspec
+I, [2014-01-15T20:26:40.388767 #10160]  INFO -- : 0:  sinatra (1.4.4) from /Users/psk/.rvm/gems/ruby-2.1.0/specifications/sinatra-1.4.4.gemspec
+I, [2014-01-15T20:26:40.389085 #10160]  INFO -- : 0:  bundler (1.5.1) from /Users/psk/.rvm/gems/ruby-2.1.0@global/specifications/bundler-1.5.1.gemspec
