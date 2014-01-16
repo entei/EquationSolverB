@@ -28,7 +28,7 @@ post '/solve' do
         else
           results = LinearEquation.new(data["b"].to_f, data["c"].to_f).solve
         end
-        response["Success"] = results.all? { |x| x.finite? } ? results : ["Divide by zero!"]
+        response["Success"] = results.all? { |x| !x.real? || x.finite? } ? results : ["Divide by zero!"]
       end
 
     else
