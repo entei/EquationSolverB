@@ -2,32 +2,37 @@ require 'complex'
 
 # ax + b = 0
 class LinearEquation
+  attr_accessor :a, :b
 
   def initialize(a, b)
-    @a, @b = a.to_f, b.to_f
+    @a, @b = a, b
   end
 
   def solve
-    (-@b / @a)
+    [(-@b / @a)]
+  rescue ZeroDivisionError => exception
+    return exception
   end
 end
 
 # ax^2 + bx + c = 0
 class QuadraticEquation < LinearEquation
+  attr_accessor :a, :b, :c
 
   def initialize(a, b, c)
     super(a, b)
-    @c = c.to_f
+    @c = c
   end
 
   # Math#sqrt will return a complex instance if necessary
   def solve
-    # return "Imaginary Roots" if disc < 0 
     [(-@b - Math.sqrt(disc)) / (2 * @a), (-@b + Math.sqrt(disc)) / (2 * @a)].uniq
+  rescue ZeroDivisionError => exception
+    return exception
   end
 
   def disc
-    disc = (@b * @b) - 4 * @a * @c #discriminant
+    (@b * @b) - 4 * @a * @c # discriminant
   end
 
 end
