@@ -34,5 +34,4 @@ class QuadraticEquation < LinearEquation
   def disc
     (@b * @b) - 4 * @a * @c # discriminant
   end
-
 end
