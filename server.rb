@@ -2,7 +2,7 @@ require 'sinatra'
 require 'json'
 require './equations.rb'
 
-# POST METHOD
+# POST '/SOLVE'
 post '/solve' do
   content_type :json
   if request.body != nil || request.body.respond_to?(:read)  
@@ -11,28 +11,39 @@ post '/solve' do
     response = {}
     case data['type']
     when 'linear'
-      if data["a"].empty? || data["b"].empty?
-        response[:error] = "Wrong params!"
+      if data['a'] && data['b']
+        if data['a'].empty? || data['b'].empty?
+          response[:error] = 'Wrong params!'
+        else    
+          case results = LinearEquation.new(data['a'], data['b']).solve
+          when 'Divide by zero!'
+            response[:error] = results
+          else
+            response[:success] = results
+          end
+        end
       else
-        results = LinearEquation.new(data["a"].to_f, data["b"].to_f).solve
-        results.all? { |x| x.finite? } ? response[:success] = results : response[:error] = "Divide by zero!"
+        response[:error] = 'Wrong number of arguments!'
       end
 
     when 'quadratic'
-      if data["a"].empty? || data["b"].empty? || data["c"].empty?
-        response[:error] = "Wrong params!"
-      else
-        if data["a"].to_f != 0
-          results = QuadraticEquation.new(data["a"].to_f, data["b"].to_f, data["c"].to_f).solve
+      if data['a'] && data['b'] && data['c']
+        if data['a'].empty? || data['b'].empty? || data['c'].empty?
+          response[:error] = 'Wrong params!'
         else
-          results = LinearEquation.new(data["b"].to_f, data["c"].to_f).solve
+          case results = QuadraticEquation.new(data['a'], data['b'], data['c']).solve
+          when 'Divide by zero!'
+            response[:error] = results
+          else
+            response[:success] = results
+          end
         end
-        # add result if only finite or complex
-        results.all? { |x| !x.real? || x.finite? } ? response[:success] = results : response[:error] = "Divide by zero!"
+      else
+        response[:error] = 'Wrong number of arguments!'
       end
 
     else
-      response[:error] = "Wrong type of equation!"
+      response[:error] = 'Wrong type of equation!'
     end
 
     response.to_json # send json response
@@ -40,7 +51,7 @@ post '/solve' do
 end
 
 private
-
+  
 def body_request_read(request)
   begin
     request.body.read
