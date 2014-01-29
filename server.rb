@@ -11,32 +11,24 @@ post '/solve' do
     response = {}
     case data['type']
     when 'linear'
-      if data['a'] && data['b']
-        if data['a'].empty? || data['b'].empty?
-          response[:error] = 'Wrong params!'
-        else    
-          case results = LinearEquation.new(data['a'], data['b']).solve
-          when 'Divide by zero!'
-            response[:error] = results
-          else
-            response[:success] = results
-          end
+      if valid_params?(data, 'a', 'b')
+        case results = LinearEquation.new(data['a'], data['b']).solve 
+        when 'Divide by zero!'
+          response[:error] = results
+        else
+          response[:success] = results
         end
       else
         response[:error] = 'Wrong number of arguments!'
       end
 
     when 'quadratic'
-      if data['a'] && data['b'] && data['c']
-        if data['a'].empty? || data['b'].empty? || data['c'].empty?
-          response[:error] = 'Wrong params!'
+      if valid_params?(data, 'a', 'b', 'c')
+        case results = QuadraticEquation.new(data['a'], data['b'], data['c']).solve
+        when 'Divide by zero!'
+          response[:error] = results
         else
-          case results = QuadraticEquation.new(data['a'], data['b'], data['c']).solve
-          when 'Divide by zero!'
-            response[:error] = results
-          else
-            response[:success] = results
-          end
+          response[:success] = results
         end
       else
         response[:error] = 'Wrong number of arguments!'
@@ -51,7 +43,15 @@ post '/solve' do
 end
 
 private
-  
+
+# ...
+def valid_params?(params, *fields)
+  fields.each do |f|
+    return false unless params[f]
+  end
+  true
+end
+
 def body_request_read(request)
   begin
     request.body.read
