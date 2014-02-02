@@ -12,7 +12,7 @@ class LinearEquation
     if @a.zero?
       'Divide by zero!'
     else
-      [(-@b / @a)]
+      [(-@b / @a).round(2)]
     end
   end
 end
@@ -33,7 +33,7 @@ class QuadraticEquation < LinearEquation
       @b = @c
       super
     else
-      [(-@b - Math.sqrt(disc)) / (2 * @a), (-@b + Math.sqrt(disc)) / (2 * @a)].uniq
+      [(-@b - Math.sqrt(disc)) / (2 * @a).round(2), (-@b + Math.sqrt(disc)) / (2 * @a)].uniq
     end
   end
 
